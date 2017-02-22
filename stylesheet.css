@@ -50,6 +50,10 @@ section{
     transform: translate3d(0, 0, -3000px);
 }
 
+#level-5{
+    transform: translate3d(0, 0, -4000px);
+}
+
 .flexContainer {
     display: flex;
     flex-direction: row;
@@ -73,15 +77,20 @@ section{
 }
 
 img {
+    display: inline block;
     width: 300px;
     height: 300px;
     margin: 10px;
+}
+
+.location-3 {
+    margin-left: 50%;
 }
 
 .location-6 {
     margin-top: -10%;
 }
 
-.location-3 {
+.location-9 {
     margin-left: 50%;
 }
