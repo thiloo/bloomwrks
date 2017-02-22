@@ -40,19 +40,19 @@ function getScroll2DTransform(scroll) {
     // 2D scale is exponential
     var scale = Math.pow(3, scroll * (levels - 1));
     return 'scale(' + scale + ')';
-};
+}
 
 function getScroll3DTransform(scroll) {
     var z = (scroll * (levels - 1) * distance3d);
     return 'translate3d( 0, 0, ' + z + 'px )';
-};
+}
 
 // applies transform to content from position of scroll
 function transformScroll(scroll) {
     var style = {};
     style[transformProp] = getScrollTransform(scroll);
     $content.css(style);
-};
+}
 
 function zoom() {
     // normalize scroll value from 0 to 1
@@ -61,4 +61,4 @@ function zoom() {
     */
     scrolled = $window.scrollTop() / ($document.height() - $window.height());
     transformScroll(scrolled);
-};
+}
