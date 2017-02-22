@@ -5,12 +5,13 @@ var transformProp = null,
     $content = null,
     scrolled = 0, // amount window has scrolled
     currentLevel = 0, // how deep in the stack are we?
-    levels = 3, // number of zoomable sections
+    levels = 4, // number of zoomable sections
     distance3d = 1000, // amount each section is apart from eachother
     levelGuide = {
         '#level-1': 0,
         '#level-2': 1,
-        '#level-3': 2
+        '#level-3': 2,
+        '#level-4': 3
     };
 
 $(function() {
