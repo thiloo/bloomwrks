@@ -2,7 +2,6 @@ body {
     margin: 0;
 }
 
-
 #wrap{
     height: 100%;
     width: 100%;
@@ -91,6 +90,7 @@ section{
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+    overflow: scroll;
 }
 
 .overlay-flex-side {
@@ -111,6 +111,8 @@ section{
 
 .overlay-text {
     width: 100%;
+    color: white;
+    margin-bottom: 100px;
 }
 
 .largeImage {
