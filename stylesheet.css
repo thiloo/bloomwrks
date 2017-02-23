@@ -58,6 +58,10 @@ section{
     transform: translate3d(0, 0, -4000px);
 }
 
+#level-6{
+    transform: translate3d(0, 0, -5000px);
+}
+
 .flexContainer {
     display: flex;
     flex-direction: row;

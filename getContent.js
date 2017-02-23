@@ -5,7 +5,22 @@ const client = contentful.createClient({
     accessToken: 'e5ef71a8009233f87ba815f7bb42afe5087583f6ec9ba87317545eec5af4fabb'
 });
 
-let overlay = false;
+let overlay = false,
+    transformProp = null,
+    getScrollTransform = null,
+    $window = null,
+    $document = null,
+    $content = null,
+    scrolled = 0, // amount window has scrolled
+    currentLevel = 0, // how deep in the stack are we?
+    levels = 5, // number of zoomable sections
+    distance3d = 1000, // amount each section is apart from eachother
+    levelGuide = {
+        '#level-1': 0,
+        '#level-2': 1,
+        '#level-3': 2,
+        '#level-4': 3
+    };
 
 client.getEntries({
     'content_type': 'layer'
@@ -34,6 +49,7 @@ function sortLayers(layers) {
 }
 
 function renderLayers(layers) {
+    levels = layers.length;
     let i = 1;
     layers.map(layer => {
         $('#content').append(`<section id="level-${i}">
@@ -101,21 +117,7 @@ function showBigImage(json) {
     });
 }
 
-let transformProp = null,
-    getScrollTransform = null,
-    $window = null,
-    $document = null,
-    $content = null,
-    scrolled = 0, // amount window has scrolled
-    currentLevel = 0, // how deep in the stack are we?
-    levels = 5, // number of zoomable sections
-    distance3d = 1000, // amount each section is apart from eachother
-    levelGuide = {
-        '#level-1': 0,
-        '#level-2': 1,
-        '#level-3': 2,
-        '#level-4': 3
-    };
+
 
 $(function() {
     transformProp = Modernizr.prefixed('transform'); // ie: WebkitTransform
