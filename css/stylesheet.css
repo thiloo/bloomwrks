@@ -42,26 +42,6 @@ section{
     position: absolute;
 }
 
-/*#level-2{
-    transform: translate3d(0, 0, -1000px);
-}
-
-#level-3{
-    transform: translate3d(0, 0, -2000px);
-}
-
-#level-4{
-    transform: translate3d(0, 0, -3000px);
-}
-
-#level-5{
-    transform: translate3d(0, 0, -4000px);
-}
-
-#level-6{
-    transform: translate3d(0, 0, -5000px);
-}*/
-
 .flexContainer {
     display: flex;
     flex-direction: row;
@@ -82,11 +62,16 @@ section{
     align-items: center;
 }
 
-
 .smallImage {
     width: 100%;
     height: auto;
     max-height: 300px;
+}
+
+.smallImage:hover {
+    box-shadow: 0 0 10px #ccc;
+    cursor: pointer;
+    cursor: hand;
 }
 
 #overlay {
