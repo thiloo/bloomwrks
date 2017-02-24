@@ -42,7 +42,7 @@ section{
     position: absolute;
 }
 
-#level-2{
+/*#level-2{
     transform: translate3d(0, 0, -1000px);
 }
 
@@ -60,7 +60,7 @@ section{
 
 #level-6{
     transform: translate3d(0, 0, -5000px);
-}
+}*/
 
 .flexContainer {
     display: flex;

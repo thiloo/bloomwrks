@@ -51,9 +51,9 @@ function sortLayers(layers) {
 
 function renderLayers(layers) {
     levels = layers.length;
-    let i = 1;
+    let i = 0;
     layers.map(layer => {
-        $('#content').append(`<section id="level-${i}">
+        $('#content').append(`<section id="level-${i}" style="transform: translate3d(0, 0, -${i}000px)">
             <div class="flexContainer">
                 <div class="flexItem" id="fi-1-l-${i}"></div>
                 <div class="flexItem" id="fi-2-l-${i}"></div>
