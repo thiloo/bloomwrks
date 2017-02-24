@@ -1,8 +1,8 @@
 const client = contentful.createClient({
     // This is the space ID. A space is like a project folder in Contentful terms
-    space: 'f5w6053ana68',
+    space: space,
     // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
-    accessToken: 'e5ef71a8009233f87ba815f7bb42afe5087583f6ec9ba87317545eec5af4fabb'
+    accessToken: accessToken
 });
 
 let overlay = false,
@@ -25,7 +25,7 @@ let overlay = false,
 client.getEntries({
     'content_type': 'layer'
 }).then(layer => {
-    console.log(layer);
+    console.log('layer',layer);
     // get image url and location on layer
     let images = layer.items.map(image => {
         let links = image.fields.images.map(info => {
@@ -34,6 +34,7 @@ client.getEntries({
             json.location = info.fields.layerLocation;
             json.url = info.fields.image.fields.file.url;
             json.imageId = info.sys.id;
+            json.imageSysId = info.fields.image.sys.id;
             return json;
         });
         return links;
@@ -83,11 +84,20 @@ function getSpecificImage(id, url) {
         json.imageId = id;
         json.imageUrl = url;
         json.projectId = result.fields.project.sys.id;
-        client.getEntry(result.fields.project.sys.id).then(project => {
-            json.title = project.fields.title;
-            json.subtitle = project.fields.subtitle;
-            json.category = project.fields.category;
-            json.description = project.fields.description;
+        client.getEntries({
+            'content_type': 'project',
+            'sys.id': result.fields.project.sys.id,
+        }).then(project => {
+            json.title = project.items[0].fields.title;
+            json.subtitle = project.items[0].fields.subtitle;
+            json.category = project.items[0].fields.category;
+            json.description = project.items[0].fields.description;
+            json.images = project.items[0].fields.images.map(image => {
+                let obj = {};
+                obj.id = image.sys.id;
+                obj.url = `http:${image.fields.image.fields.file.url}`;
+                return obj;
+            });
             showBigImage(json);
         });
     });
@@ -95,12 +105,11 @@ function getSpecificImage(id, url) {
 
 function showBigImage(json) {
     overlay = true;
-    console.log(json);
     $(`#wrap`).append(`<div id="overlay" class="flexContainer">
             <div class="overlay-flex-side"></div>
             <div class="overlay-flex-middle">
                 <div class="overlay-image">
-                    <img src="${json.imageUrl}" class="largeImage" />
+                    ${prepareSlide(json)}
                 </div>
                 <div class="overlay-text">
                     <h2>${json.title}</h2>
@@ -115,8 +124,45 @@ function showBigImage(json) {
         $('#overlay').remove();
         overlay = false;
     });
+    var wallopEl = document.querySelector('.Wallop');
+    var slider = new Wallop(wallopEl);
 }
 
+
+function prepareSlide(json) {
+    return(
+        `<div class="Wallop flexContainer">
+            <div class="Wallop-buttonPrevious slideButton">
+                <
+            </div>
+            <div class="Wallop-list slideImage">
+                ${prepareSlideImage(json)}
+            </div>
+            <div class="Wallop-buttonNext slideButton">
+                >
+            </div>
+
+        </div>`
+    );
+}
+
+function prepareSlideImage(json) {
+    return json.images.map(image => {
+        if(image.id == json.imageId) {
+            return (
+                `<div class="Wallop-item Wallop-item--current">
+                    <img src="${image.url}" id="${image.id}" class="largeImage" />
+                </div>`
+            );
+        } else {
+            return (
+                `<div class="Wallop-item">
+                    <img src="${image.url}" id="${image.id}" class="largeImage" />
+                </div>`
+            );
+        }
+    });
+}
 
 
 $(function() {

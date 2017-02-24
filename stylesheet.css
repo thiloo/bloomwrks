@@ -109,7 +109,8 @@ section{
 
 .overlay-image {
     margin-top: 50px;
-    width: 100%;
+    margin-left: 15%;
+    width: 70%;
     height: auto;
 }
 
@@ -129,4 +130,18 @@ section{
     text-align: right;
     margin-top: 20px;
     margin-right: 50px;
+}
+
+.slideButton {
+    margin-top: 25%;
+    display: inline;
+    width: 10%;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+}
+
+.slideImage {
+    display: inline;
+    width: 80%;
 }
