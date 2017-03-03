@@ -1,8 +1,8 @@
 const client = contentful.createClient({
     // This is the space ID. A space is like a project folder in Contentful terms
-    space: space,
+    space: 'f5w6053ana68',
     // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
-    accessToken: accessToken
+    accessToken: '1ff5abde400b38790ab9bbae4aee246212d62bab5622679f6f21a1a9e1867b81'
 });
 
 let overlay = false,
@@ -53,7 +53,7 @@ function renderLayers(layers) {
     levels = layers.length;
     let i = 0;
     layers.map(layer => {
-        $('#content').append(`<section id="level-${i}" style="transform: translate3d(0, 0, -${i*500}px)">
+        $('#content').append(`<section id="level-${i}" style="transform: translate3d(0, 0, -${i*1000}px)">
             <div class="flexContainer">
                 <div class="flexItem" id="fi-1-l-${i}"></div>
                 <div class="flexItem" id="fi-2-l-${i}"></div>
@@ -107,16 +107,18 @@ function getSpecificImage(id, url) {
 }
 
 function showBigImage(json) {
+    console.log(json);
     overlay = true;
     $(`#wrap`).append(`<div id="overlay" class="flexContainer">
             <div class="overlay-flex-side"></div>
             <div class="overlay-flex-middle">
-                <div class="overlay-image">
-                    ${prepareSlide(json)}
-                </div>
+
                 <div class="overlay-text">
                     <h2>${json.title}</h2>
-                    <p>${json.description}</p>
+                    <p>${marked(json.description)}</p>
+                </div>
+                <div class="overlay-image">
+                    ${prepareSlide(json)}
                 </div>
             </div>
             <div class="overlay-flex-side">

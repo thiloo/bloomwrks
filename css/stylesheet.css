@@ -56,7 +56,7 @@ section{
     margin-bottom: 10px;
     margin-left: 5%;
     margin-right: 5%;
-    border: 2px solid black;
+    /*border: 2px solid black;*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,33 +76,39 @@ section{
 
 #overlay {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    width: 90%;
+    height: 90%;
+    margin-left: 5%;
+    margin-top: 2%;
+    border: 2px solid black;
+    background-color: white;
+    /*background-color: rgba(0, 0, 0, 0.5);*/
     overflow: scroll;
 }
 
 .overlay-flex-side {
-    width: 25%;
+    width: 10%;
     height: 100%;
 }
 
 .overlay-flex-middle {
-    width: 50%;
+    width: 80%;
     height: 100%;
+    display: flex;
 }
 
 .overlay-image {
     margin-top: 50px;
-    margin-left: 15%;
-    width: 70%;
+    margin-left: 5%;
+    width: 60%;
     height: auto;
 }
 
 .overlay-text {
-    width: 100%;
-    color: white;
+    width: 40%;
+    color: black;
     margin-bottom: 100px;
+    font-family: sans-serif;
 }
 
 .largeImage {
@@ -110,23 +116,76 @@ section{
 }
 
 #close-overlay {
-    color: white;
+    color: black;
     font-size: 40px;
     text-align: right;
     margin-top: 20px;
     margin-right: 50px;
+    font-family: sans-serif;
+}
+
+#close-overlay:hover {
+    cursor: pointer;
+    cursor: hand;
 }
 
 .slideButton {
     margin-top: 25%;
     display: inline;
-    width: 10%;
+    width: 5%;
     font-size: 30px;
-    color: white;
+    color: black;
     text-align: center;
+}
+
+.slideButton:hover {
+    cursor: pointer;
+    cursor: hand;
 }
 
 .slideImage {
     display: inline;
-    width: 80%;
+    width: 90%;
+}
+
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.headerLogo {
+    width: 15%;
+    margin-left: 40px;
+    height: 100%;
+}
+
+.headerLogo img {
+    max-height: 100%;
+}
+
+.navLinks {
+    width: 30%;
+    margin-right: 50px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.navLinks a {
+    font-size: 16px;
+    color: black;
+    text-decoration: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: sans-serif;
+    font-weight: lighter;
+}
+
+.navLinks a:hover {
+    cursor: pointer;
+    cursor: hand;
 }
