@@ -53,7 +53,7 @@ function renderLayers(layers) {
     levels = layers.length;
     let i = 0;
     layers.map(layer => {
-        $('#content').append(`<section id="level-${i}" style="transform: translate3d(0, 0, -${i}000px)">
+        $('#content').append(`<section id="level-${i}" style="transform: translate3d(0, 0, -${i*500}px)">
             <div class="flexContainer">
                 <div class="flexItem" id="fi-1-l-${i}"></div>
                 <div class="flexItem" id="fi-2-l-${i}"></div>
@@ -61,6 +61,9 @@ function renderLayers(layers) {
                 <div class="flexItem" id="fi-4-l-${i}"></div>
                 <div class="flexItem" id="fi-5-l-${i}"></div>
                 <div class="flexItem" id="fi-6-l-${i}"></div>
+                <div class="flexItem" id="fi-7-l-${i}"></div>
+                <div class="flexItem" id="fi-8-l-${i}"></div>
+                <div class="flexItem" id="fi-9-l-${i}"></div>
             </div>
             </section>`);
         layer.map(image => {
