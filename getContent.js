@@ -53,7 +53,7 @@ function renderLayers(layers) {
     levels = layers.length;
     let i = 0;
     layers.map(layer => {
-        $('#content').append(`<section id="level-${i}" style="transform: translate3d(0, 0, -${i*1000}px)">
+        $('#content').append(`<section id="level-${i}" style="transform: translate3d(0, 0, -${i*1000}px); opacity: ${1 - i*0.2}">
             <div class="flexContainer">
                 <div class="flexItem" id="fi-1-l-${i}"></div>
                 <div class="flexItem" id="fi-2-l-${i}"></div>
@@ -71,7 +71,6 @@ function renderLayers(layers) {
         });
         i++;
     });
-
     attachClick();
 }
 
@@ -169,6 +168,35 @@ function prepareSlideImage(json) {
     });
 }
 
+function opacity() {
+    const location = $('#content').css('transform').split(',')[14];
+    if(location == undefined) return;
+
+    changeOpacity(location);
+}
+
+function changeOpacity(location) {
+    let number = 0;
+    if (location < 1000) {
+        return;
+    } else {
+        const position = String(location).charAt(1);
+        number = Number(position);
+    }
+
+    const layers = $('section');
+
+    for(var i =0; i < layers.length; i++) {
+        let id = layers[i].id.split('-')[1];
+        if(id == number) {
+            $(`#level-${id}`).fadeTo(10, 1);
+        } else {
+            // opacity level is determined by the depth times 0.2 to adjust opacity change 0.2
+            $(`#level-${id}`).fadeTo(10, `${1+ (number-id)*0.2}`);
+        }
+    }
+
+}
 
 $(function() {
     transformProp = Modernizr.prefixed('transform'); // ie: WebkitTransform
@@ -187,6 +215,7 @@ $(function() {
     if (Modernizr.csstransforms) {
         $(window).scroll(function() {
             zoom();
+            opacity();
         });
     } else {
         // Provide a fallback for browsers that don't support transforms yet, likely through the CSS.
